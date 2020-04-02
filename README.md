@@ -549,12 +549,14 @@ Example list passed to success callback.
         "class": 276,
         "id": "10:BF:48:CB:00:00",
         "address": "10:BF:48:CB:00:00",
-        "name": "Nexus 7"
+        "name": "Nexus 7",
+	"rssi": "-36"
     }, {
         "class": 7936,
         "id": "00:06:66:4D:00:00",
         "address": "00:06:66:4D:00:00",
-        "name": "RN42"
+        "name": "RN42",
+	"rssi": "-40"
     }]
 
 The discovery process takes a while to happen. You can register notify callback with [setDeviceDiscoveredListener](#setdevicediscoveredlistener).
