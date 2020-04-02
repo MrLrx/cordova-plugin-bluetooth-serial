@@ -22,7 +22,7 @@ import org.apache.cordova.LOG;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.lang.reflect.Method;
+
 import java.util.Set;
 
 /**
@@ -235,21 +235,11 @@ public class BluetoothSerial extends CordovaPlugin {
             callbackContext.success();
 
         } else if (action.equals(SET_DISCOVERABLE)) {
+
             int discoverableDuration = args.getInt(0);
-            LOG.d(TAG, "timeout = " + discoverableDuration);
-            // Intent discoverIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
-            // discoverIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, discoverableDuration);
-            // cordova.getActivity().startActivity(discoverIntent);
-		try {
-			Method setDiscoverableTimeout = BluetoothAdapter.class.getMethod("setDiscoverableTimeout", int.class);
-			setDiscoverableTimeout.setAccessible(true);
-			Method setScanMode = BluetoothAdapter.class.getMethod("setScanMode", int.class,int.class);
-			setScanMode.setAccessible(true);
-			setDiscoverableTimeout.invoke(bluetoothAdapter, discoverableDuration);
-			setScanMode.invoke(bluetoothAdapter, BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE, discoverableDuration);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+            Intent discoverIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+            discoverIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, discoverableDuration);
+            cordova.getActivity().startActivity(discoverIntent);
 
         } else {
             validAction = false;
@@ -293,7 +283,7 @@ public class BluetoothSerial extends CordovaPlugin {
         Set<BluetoothDevice> bondedDevices = bluetoothAdapter.getBondedDevices();
 
         for (BluetoothDevice device : bondedDevices) {
-            deviceList.put(deviceToJSON(device));
+            // deviceList.put(deviceToJSON(device));
         }
         callbackContext.success(deviceList);
     }
@@ -311,7 +301,7 @@ public class BluetoothSerial extends CordovaPlugin {
                 if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                     BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                     try {
-                    	JSONObject o = deviceToJSON(device);
+                    	JSONObject o = deviceToJSON(device, intent);
                         unpairedDevices.put(o);
                         if (ddc != null) {
                             PluginResult res = new PluginResult(PluginResult.Status.OK, o);
@@ -335,8 +325,10 @@ public class BluetoothSerial extends CordovaPlugin {
         bluetoothAdapter.startDiscovery();
     }
 
-    private JSONObject deviceToJSON(BluetoothDevice device) throws JSONException {
+    private JSONObject deviceToJSON(BluetoothDevice device, Intent intent) throws JSONException {
         JSONObject json = new JSONObject();
+        short rssi = intent.getExtras().getShort(device.EXTRA_RSSI);
+        json.put("rssi", rssi);
         json.put("name", device.getName());
         json.put("address", device.getAddress());
         json.put("id", device.getAddress());
