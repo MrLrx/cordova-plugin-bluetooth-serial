@@ -235,7 +235,16 @@ public class BluetoothSerial extends CordovaPlugin {
             callbackContext.success();
 
         } else if (action.equals(SET_DISCOVERABLE)) {
-
+            // try {
+			//     Method setDiscoverableTimeout = BluetoothAdapter.class.getMethod("setDiscoverableTimeout", int.class);
+			//     setDiscoverableTimeout.setAccessible(true);
+			//     Method setScanMode = BluetoothAdapter.class.getMethod("setScanMode", int.class,int.class);
+			//     setScanMode.setAccessible(true);
+			//     setDiscoverableTimeout.invoke(bluetoothAdapter, discoverableDuration);
+			//     setScanMode.invoke(bluetoothAdapter, BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE, discoverableDuration);
+		    // } catch (Exception e) {
+			//     e.printStackTrace();
+		    // }
             int discoverableDuration = args.getInt(0);
             Intent discoverIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
             discoverIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, discoverableDuration);
