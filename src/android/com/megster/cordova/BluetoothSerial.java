@@ -287,12 +287,12 @@ public class BluetoothSerial extends CordovaPlugin {
         }
     }
 
-    private void listBondedDevices(CallbackContext callbackContext) throws JSONException {
+    private void listBondedDevices(CallbackContext callbackContext, Intent intent) throws JSONException {
         JSONArray deviceList = new JSONArray();
         Set<BluetoothDevice> bondedDevices = bluetoothAdapter.getBondedDevices();
 
         for (BluetoothDevice device : bondedDevices) {
-            // deviceList.put(deviceToJSON(device));
+            // deviceList.put(deviceToJSON(device, intent));
         }
         callbackContext.success(deviceList);
     }
