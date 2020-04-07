@@ -1,28 +1,26 @@
 {
-  "_from": "cordova-plugin-bluetooth-serial",
+  "_from": "git+https://github.com/MrLrx/cordova-plugin-bluetooth-serial.git",
   "_id": "cordova-plugin-bluetooth-serial@0.4.7",
   "_inBundle": false,
-  "_integrity": "sha1-HkYG7G1Ct8I/YKdKh8fEpOw4KMA=",
+  "_integrity": "",
   "_location": "/cordova-plugin-bluetooth-serial",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
-    "registry": true,
-    "raw": "cordova-plugin-bluetooth-serial",
-    "name": "cordova-plugin-bluetooth-serial",
-    "escapedName": "cordova-plugin-bluetooth-serial",
-    "rawSpec": "",
-    "saveSpec": null,
-    "fetchSpec": "latest"
+    "type": "git",
+    "raw": "https://github.com/MrLrx/cordova-plugin-bluetooth-serial.git",
+    "rawSpec": "https://github.com/MrLrx/cordova-plugin-bluetooth-serial.git",
+    "saveSpec": "git+https://github.com/MrLrx/cordova-plugin-bluetooth-serial.git",
+    "fetchSpec": "https://github.com/MrLrx/cordova-plugin-bluetooth-serial.git",
+    "gitCommittish": null
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npm.taobao.org/cordova-plugin-bluetooth-serial/download/cordova-plugin-bluetooth-serial-0.4.7.tgz",
+  "_resolved": "git+https://github.com/MrLrx/cordova-plugin-bluetooth-serial.git#bc256f949fc25141319682f9b5e72c65b42faadf",
   "_shasum": "1e4606ec6d42b7c23f60a74a87c7c4a4ec3828c0",
-  "_spec": "cordova-plugin-bluetooth-serial",
-  "_where": "C:\\Users\\admin\\Desktop\\MyItems\\EFOS_CL",
+  "_spec": "https://github.com/MrLrx/cordova-plugin-bluetooth-serial.git",
+  "_where": "D:\\HYD-APP\\EFOS_Tot\\efos_toilet",
   "author": {
     "name": "Don Coleman",
     "email": "don.coleman@gmail.com"
